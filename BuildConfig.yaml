@@ -1,0 +1,38 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftNewBuild
+  creationTimestamp: null
+  labels:
+    build: cpjhelloworld
+  name: cpjhelloworld
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: cpjhelloworld:latest
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    git:
+      uri: https://github.com/mpiech/cpjhello
+    type: Git
+  strategy:
+    sourceStrategy:
+      from:
+        kind: DockerImage
+        name: 'quay.io/hdaems/s2i-clojure:latest'
+    type: Source
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - github:
+      secret: mLw_P-ZjThBlOpUy1tzj
+    type: GitHub
+  - type: ConfigChange
+  - imageChange:
+      lastTriggeredImageID: quay.io/hdaems/s2i-clojure@sha256:61a2373a00796bd70b60c809afd8283b8dfb28782e71e75277784e713770c99d
+    type: ImageChange
