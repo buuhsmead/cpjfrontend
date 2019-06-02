@@ -6,7 +6,7 @@
                  [compojure "1.6.1"]
                  [ring/ring-defaults "0.3.2"]]
   :plugins [[lein-ring "0.12.5"]]
-  :ring {:handler cpjfrontend.handler/app}
+  :ring {:handler cpjfrontend.handler/app :port 8080}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
                         [ring/ring-mock "0.3.2"]]}})
